@@ -1,0 +1,13 @@
+{
+  "name": "tf-docker-sandbox",
+  "version": "1.0.0",
+  "description": "Sandbox for running Tensorflow in docker with Jupyter and own scripts",
+  "scripts": {
+    "start": "docker run -it --rm --name tf-docker-sandbox-jupyter -p 8888:8888 tensorflow/tensorflow:nightly-py3 ",
+    "start:jupyter": "docker build -f jupyter.Dockerfile --rm=true -t tf-docker-sandbox-jupyter . && docker run -it  --rm --name tf-docker-sandbox-jupyter -p 8888:8888 tf-docker-sandbox-jupyter",
+    "start:script": "docker build -f script.Dockerfile --rm=true -t tf-docker-sandbox-script . && docker run -it  --rm --name tf-docker-sandbox-script tf-docker-sandbox-script",
+    "clean": "docker rmi $(docker images -f dangling=true -q)"
+  },
+  "author": "Leevi Lehtonen",
+  "license": "MIT"
+}
